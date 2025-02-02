@@ -1,0 +1,51 @@
+### List restaurants
+GET http://localhost:3000/restaurants
+
+
+### Get restaurant
+GET http://localhost:3000/restaurants/res_LgGisYVtaK-igDuwe0P49
+
+
+### Create restaurant
+POST http://localhost:3000/restaurants
+Content-Type: application/json
+
+{
+  "name": "Restaurante Sabor & Arte",
+  "location": "Avenida Paulista, 1500 - São Paulo, SP",
+  "date": "2025-02-10T19:30:00Z",
+  "tables": "8",
+  "value": "10.00",
+  "images": [
+    "https://images.unsplash.com/photo-1556742205-e10c9486e506?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://plus.unsplash.com/premium_photo-1686090448301-4c453ee74718?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1556745750-68295fefafc5?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1512805147242-c3e79caf64bf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1546622891-02c72c1537b6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1538488881038-e252a119ace7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1518188770546-efd25d4ca263?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  ],
+  "description": "O Restaurante Sabor & Arte é um dos destinos gastronômicos mais renomados de São Paulo, oferecendo um ambiente sofisticado e acolhedor. Com um cardápio diversificado que combina pratos tradicionais da culinária brasileira com influências contemporâneas, o restaurante se destaca pela qualidade dos ingredientes e pelo sabor excepcional de suas refeições. Além disso, o espaço conta com uma carta de vinhos selecionada, sobremesas artesanais e um atendimento impecável. Localizado no coração da cidade, o Sabor & Arte é ideal tanto para encontros românticos quanto para reuniões de negócios e eventos especiais."
+}
+
+
+### Update restaurant
+PATCH  http://localhost:3000/restaurants/res_BFVLkvTPLV3pASuaI0mVR
+Content-Type: application/json
+
+
+{
+    "name": "Restaurante - UFLA3"
+}
+
+
+### Delete restaurant
+DELETE  http://localhost:3000/restaurants/res_LgGisYVtaK-igDuwe0P49
+
+
+### Delete all restaurant
+DELETE  http://localhost:3000/restaurants
