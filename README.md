@@ -20,3 +20,14 @@ Além disso, é possível filtrar por tipos de estabelecimentos, como:
 - **Cadastro e gerenciamento de reservas**  
 - **Filtro por localização, tipo de comida e estabelecimentos**  
 - **Interface simples e intuitiva para os clientes**  
+
+
+### Exemplo Back-end
+
+
+https://github.com/user-attachments/assets/680839cc-b3ed-49e5-b501-7c3b1b10abc5
+
+
+
+### Exemplo Front-end
+[Exemplo back.webm](https://github.com/user-attachments/assets/a3c6516c-ada9-4b80-94a1-c5d33cc32a2f)
