@@ -1,5 +1,16 @@
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/230cb010-6503-4fed-a6d4-64887a1260e9" alt="logo" >
 
-# 🍽️ **Sistema de Reserva de Mesas**  
+</p>
+
+<h3 align="center">BONAPTT - Sistema de Reserva de Mesas </h3>
+
+<p align="center">
+  GAC116-2024/2 - Programação Web 
+</p>
+
+
+# 🍽️ **Sobre o sistema**  
 
 Um sistema simples e eficiente para reservas de mesas em restaurantes!  
 O cliente pode selecionar:  
