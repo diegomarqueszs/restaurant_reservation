@@ -1,0 +1,18 @@
+### cadastrar (signUp)
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "email": "teste2@thiago.com",
+    "password": "teste123"
+}
+
+
+### logar (signIn)
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+    "email": "teste2@thiago.com",
+    "password": "teste123"
+}
