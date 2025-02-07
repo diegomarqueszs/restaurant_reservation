@@ -13,7 +13,6 @@ import {
 import { RestaurantsService } from './restaurants.service';
 import { CreateRestaurantDto } from './dto/create-restaurant.dto';
 import { UpdateRestaurantDto } from './dto/update-restaurant.dto';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CurrentUser } from 'src/auth/current-user.decorator';
 
 @Controller('restaurants')
@@ -31,7 +30,6 @@ export class RestaurantsController {
   }
 
   @Get(':id')
-  @UseGuards(JwtAuthGuard)
   async findOne(@Param('id') id: string, @CurrentUser() user) {
     console.log('Usuário autenticado:', user); // Para debug
     const restaurant = await this.restaurantsService.findOne(id);

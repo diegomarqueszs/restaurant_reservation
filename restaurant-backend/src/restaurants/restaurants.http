@@ -4,7 +4,6 @@ GET http://localhost:3000/restaurants
 
 ### Get restaurant
 GET http://localhost:3000/restaurants/res_ySd_Qc7QqlH_dJqHi8LNo
-Authorization: Bearer <token>
 
 ### Create restaurant
 POST http://localhost:3000/restaurants
