@@ -40,18 +40,38 @@
 	async function handleClick() {
 		isLoading = true;
 		try {
-			await new Promise((resolve) => setTimeout(resolve, 2000));
-			const reservationData = {
-				restaurantId: restaurantData.id,
-				date: value,
-				tables,
-				total: calculateTotal(),
-				securityFee: calculateSecurityFee()
-			};
-			console.log('Reservation data:', reservationData);
-		} catch (error) {
-			console.error('Error making reservation:', error);
-		} finally {
+			const user = JSON.parse(localStorage.getItem('user') || '{}'); // Pegue o usuário salvo no localStorage
+			if (!user?.id) {
+				alert('Você precisa estar logado para fazer uma reserva!');
+				return;
+			}
+
+			const response = await fetch("http://localhost:3000/reservations", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					userId: user.id,  // Envia o ID do usuário autenticado
+					restaurant: restaurantData.id,
+					reservationDate: value,
+					numberOfTables: tables,
+				}),
+			});
+
+			if (!response.ok) {
+				const errorMessage = await response.json();
+				throw new Error(errorMessage.message || "Erro ao fazer reserva");
+			}
+			else{
+				alert("Reserva realizada com sucesso!");
+			}
+		} 
+		catch (error) {
+			console.error("Erro ao fazer reserva:", error);
+			alert(error.message);
+		} 
+		finally {
 			isLoading = false;
 		}
 	}
