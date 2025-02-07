@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 	import CircleUser from 'lucide-svelte/icons/circle-user';
-	import Menu from 'lucide-svelte/icons/menu';
+    import Menu from 'lucide-svelte/icons/menu';
 	import { Button } from '$lib/components/ui/button';
-	import * as Sheet from '$lib/components/ui/sheet';
+    import * as Sheet from '$lib/components/ui/sheet';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import SearchBar from '$lib/components/layout/SearchBar.svelte';
 	import { fade } from 'svelte/transition';
@@ -14,6 +14,20 @@
       const searchData = event.detail;
       console.log('Search data:', searchData);
     }
+
+	let isLoggedIn = false;
+
+	// Verifica se o usuário está logado ao carregar o componente
+	onMount(() => {
+		isLoggedIn = localStorage.getItem("token") !== null;
+	});
+
+	// Função de logout
+	const logout = () => {
+		localStorage.removeItem("token");
+		localStorage.removeItem("user");
+		window.location.href = "/login"; // Redireciona para a tela de login
+	};
 </script>
 
 <header class="sticky top-0 flex h-24 items-center gap-4 px-4 md:px-6 z-50 relative bg-[#3e7b31] shadow-lg">
@@ -42,8 +56,17 @@
             <DropdownMenu.Content class="z-[60]">
                 <DropdownMenu.Label>Minha Conta</DropdownMenu.Label>
                 <DropdownMenu.Separator />
-                <DropdownMenu.Item>Minhas Reservas</DropdownMenu.Item>
-                <DropdownMenu.Item>Logout</DropdownMenu.Item>
+                
+                {#if isLoggedIn}
+                    <DropdownMenu.Item>
+                        <a href="/reservas">Minhas Reservas</a>
+                    </DropdownMenu.Item>
+                    <DropdownMenu.Item on:click={logout}>Sair</DropdownMenu.Item>
+                {:else}
+                    <DropdownMenu.Item>
+                        <a href="/login">Entrar</a>
+                    </DropdownMenu.Item>
+                {/if}
             </DropdownMenu.Content>
         </DropdownMenu.Root>
     </div>

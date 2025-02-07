@@ -41,6 +41,7 @@
 			// Se houver um token, armazena e redireciona
 			if (data.access_token) {
 				localStorage.setItem("token", data.access_token);
+				localStorage.setItem("user", JSON.stringify(data.user)); // Salva os dados do usuário
 				window.location.href = `${window.location.origin}`;
 			} else {
 				alert("Login falhou. Verifique suas credenciais.");
@@ -62,18 +63,20 @@
 			const response = await fetch("http://localhost:3000/auth/signup", {
 				method: "POST",
 				headers: {
-				"Content-Type": "application/json",
+					"Content-Type": "application/json",
 				},
 				body: JSON.stringify({
-				firstName: registerFirstName,
-				lastName: registerLastName,
-				email: registerEmail,
-				password: registerPassword,
+					firstName: registerFirstName,
+					lastName: registerLastName,
+					email: registerEmail,
+					password: registerPassword,
 				}),
 			});
 
+			// Se a resposta não for OK, pega a mensagem do backend
 			if (!response.ok) {
-				throw new Error("Erro ao fazer cadastro");
+				const errorData = await response.json();
+				throw new Error(errorData.message || "Erro ao fazer cadastro");
 			}
 
 			alert("Cadastro realizado com sucesso!");
@@ -82,7 +85,7 @@
 			window.location.href = `${window.location.origin}/login`;
 		} catch (error) {
 			console.error("Erro ao cadastrar:", error);
-			alert("Erro ao cadastrar");
+			alert(error.message);
 		}
 	};
 </script>
