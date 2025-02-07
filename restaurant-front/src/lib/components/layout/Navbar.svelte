@@ -28,6 +28,10 @@
 		localStorage.removeItem("user");
 		window.location.href = "/login"; // Redireciona para a tela de login
 	};
+
+    function navigateToReservas() {
+        goto('/reservas');
+    }
 </script>
 
 <header class="sticky top-0 flex h-24 items-center gap-4 px-4 md:px-6 z-50 relative bg-[#3e7b31] shadow-lg">

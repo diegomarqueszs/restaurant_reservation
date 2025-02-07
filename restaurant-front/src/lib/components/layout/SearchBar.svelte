@@ -58,6 +58,7 @@
           />
       </div>
 
+      <!-- svelte-ignore element_invalid_self_closing_tag -->
       <div class="h-6 w-px bg-gray-200" />
 
       <div class="flex-1">
@@ -70,6 +71,7 @@
           />
       </div>
 
+      <!-- svelte-ignore element_invalid_self_closing_tag -->
       <div class="h-6 w-px bg-gray-200" />
 
       <Popover.Root>
