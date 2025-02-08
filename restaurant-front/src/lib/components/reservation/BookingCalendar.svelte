@@ -45,6 +45,11 @@
 				alert('Você precisa estar logado para fazer uma reserva!');
 				return;
 			}
+			const reservationDateISO = new Date(
+				value.year, 
+				value.month - 1, 
+				value.day
+			).toISOString();
 
 			const response = await fetch("http://localhost:3000/reservations", {
 				method: "POST",
@@ -54,7 +59,7 @@
 				body: JSON.stringify({
 					userId: user.id,  // Envia o ID do usuário autenticado
 					restaurant: restaurantData.id,
-					reservationDate: value,
+					reservationDate: reservationDateISO,
 					numberOfTables: tables,
 				}),
 			});

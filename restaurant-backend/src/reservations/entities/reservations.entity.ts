@@ -11,7 +11,7 @@ export class Reservation {
     user: User;
 
     @Column()
-    restaurant: number;
+    restaurant: string;
 
     @Column()
     reservationDate: Date;

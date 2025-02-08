@@ -10,7 +10,7 @@ POST http://localhost:3000/restaurants
 Content-Type: application/json
 
 {
-  "name": "Restaurante Sabor & Arte",
+  "name": "Restaurante Esquinao",
   "location": "Avenida Paulista, 1500 - São Paulo, SP",
   "date": "2025-02-10T19:30:00Z",
   "tables": "8",
