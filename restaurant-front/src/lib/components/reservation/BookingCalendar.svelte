@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { toast } from 'svelte-sonner';
-	import { Toaster } from '$lib/components/ui/sonner';
 	import { onMount, afterUpdate } from 'svelte';
 	import { Calendar } from '$lib/components/ui/calendar/index.js';
 	import { Button } from '$lib/components/ui/button';
@@ -12,7 +11,6 @@
 	import { getLocalTimeZone, today } from '@internationalized/date';
 	import type { Restaurant } from '$lib/types/restaurant';
 	import { Toaster } from '../ui/sonner';
-	import { toast } from 'svelte-sonner';
 
 
 	export let restaurantData!: Restaurant;
