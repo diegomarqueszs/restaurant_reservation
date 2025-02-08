@@ -44,4 +44,21 @@ export class ReservationService {
     return reservations;
   }
 
+
+  async getReservedTables(restaurantId: string, date: string): Promise<{ reserved: number }> {
+    const reservationDate = new Date(date);
+    reservationDate.setHours(0, 0, 0, 0); // Normaliza a data
+
+    const reservations = await this.reservationRepository.find({
+      where: {
+        restaurant: restaurantId,
+        reservationDate: reservationDate,
+      },
+    });
+
+    // Soma as mesas já reservadas
+    const reservedTables = reservations.reduce((sum, res) => sum + res.numberOfTables, 0);
+
+    return { reserved: reservedTables };
+  }
 }
