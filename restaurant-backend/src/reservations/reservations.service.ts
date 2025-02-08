@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, Between} from 'typeorm';
 import { Reservation } from './entities/reservations.entity';
 
 @Injectable()
@@ -45,14 +45,18 @@ export class ReservationService {
   }
 
 
-  async getReservedTables(restaurantId: string, date: string): Promise<{ reserved: number }> {
-    const reservationDate = new Date(date);
-    reservationDate.setHours(0, 0, 0, 0); // Normaliza a data
+  async getReservedTables(restaurantId: string, reservationDate: string): Promise<{ reserved: number }> {
+    const receivedDate = new Date(reservationDate);
+    const startOfDay = new Date(receivedDate);
+    startOfDay.setHours(0, 0, 0, 0); // 00:00:00
+
+    const endOfDay = new Date(receivedDate);
+    endOfDay.setHours(23, 59, 59, 999); // 23:59:59
 
     const reservations = await this.reservationRepository.find({
       where: {
         restaurant: restaurantId,
-        reservationDate: reservationDate,
+        reservationDate: Between(startOfDay, endOfDay),
       },
     });
 

@@ -50,12 +50,12 @@
 	// Função para buscar mesas disponíveis (chama o backend sempre que a data mudar)
 	async function fetchAvailableTables() {
 		const selectedDate = new Date(value.year, value.month - 1, value.day).toISOString().split('T')[0];
-
-		console.log(`Buscando disponibilidade para: ${selectedDate}`);
-
 		const reservedTables = await fetchReservedTables(restaurantData.id, selectedDate);
 		availableTables = maxTables - reservedTables;
+		availableTables = (availableTables > 0) ? availableTables : 0;
 
+		console.log(`Buscando disponibilidade para: ${selectedDate}`);
+		console.log(`Mesas Reservadas: ${reservedTables}`);
 		console.log(`Mesas disponíveis: ${availableTables}`);
 	}
 
