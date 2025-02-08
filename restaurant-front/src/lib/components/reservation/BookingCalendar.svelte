@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { toast } from 'svelte-sonner';
+	import { Toaster } from '$lib/components/ui/sonner';
 	import { onMount, afterUpdate } from 'svelte';
 	import { Calendar } from '$lib/components/ui/calendar/index.js';
 	import { Button } from '$lib/components/ui/button';
@@ -53,6 +55,7 @@
 		const reservedTables = await fetchReservedTables(restaurantData.id, selectedDate);
 		availableTables = maxTables - reservedTables;
 		availableTables = (availableTables > 0) ? availableTables : 0;
+		handleInputChange(); // Garante que o número digitado seja menor que a reserva
 
 		console.log(`Buscando disponibilidade para: ${selectedDate}`);
 		console.log(`Mesas Reservadas: ${reservedTables}`);
@@ -73,7 +76,16 @@
 		try {
 			const user = JSON.parse(localStorage.getItem('user') || '{}');
 			if (!user?.id) {
-				alert('Você precisa estar logado para fazer uma reserva!');
+				toast.error('Você precisa estar logado para fazer uma reserva!');
+				return;
+			}
+			if (!value || !tables) {
+				toast.error('Ops... Preencha a data e o número de mesas.');
+				return;
+			}
+			const selectedDate = new Date(value.year, value.month - 1, value.day);
+			if (selectedDate < new Date().setHours(0, 0, 0, 0)) {
+				toast.error('Ops... Não pode ser feita uma reserva no passado!');
 				return;
 			}
 
@@ -91,15 +103,16 @@
 			});
 
 			if (!response.ok) {
-				const errorMessage = await response.json();
-				throw new Error(errorMessage.message || 'Erro ao fazer reserva');
+				const errorResponse = await response.json();
+				const errorMessage = errorResponse?.message || 'Erro ao fazer reserva';  // Captura a mensagem do backend
+
+				toast.error(errorMessage);  // Exibe o toast com a mensagem de erro
 			} else {
-				alert('Reserva realizada com sucesso!');
+				toast.success('Reserva realizada com sucesso!');
 				await fetchAvailableTables(); // Atualiza as mesas disponíveis após a reserva
 			}
 		} catch (error) {
-			console.error('Erro ao fazer reserva:', error);
-			alert(error.message);
+			toast.error('Ocorreu um erro interno ao fazer a reserva!');
 		} finally {
 			isLoading = false;
 		}
@@ -114,6 +127,7 @@
 </script>
 
 <div class="flex w-[300px] flex-col items-center">
+	<Toaster />
 	<Label for="price" class="w-full p-2 pt-0 text-left text-2xl font-semibold text-[#3e7b31]">
 		{formattedPrice} / Mesa
 	</Label>
@@ -147,6 +161,11 @@
 			Confirmar Data
 		{/if}
 	</Button>
+
+	<script lang="ts">
+		import { toast } from 'svelte-sonner';
+		import { Button } from '$lib/components/ui/button/index.js';
+	</script>
 
 	<div class="flex w-full flex-col items-start gap-4">
 		<div class="mt-4 text-gray-800">

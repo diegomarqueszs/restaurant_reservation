@@ -11,7 +11,13 @@ export class ReservationController {
         const { userId, restaurant, reservationDate, numberOfTables } = body;
 
         if (!userId) {
-        throw new UnauthorizedException('Usuário não autenticado.');
+            throw new UnauthorizedException('Usuário não autenticado.');
+        } else if (!restaurant) {
+            throw new UnauthorizedException('Restaurante não encontrado.');
+        } else if (!reservationDate) {
+            throw new UnauthorizedException('Data inválida!');
+        } else if (!numberOfTables || numberOfTables <= 0) {
+            throw new UnauthorizedException('Número de mesas inválido.');
         }
 
         return this.reservationService.createReservation(userId, restaurant, reservationDate, numberOfTables);
@@ -30,6 +36,7 @@ export class ReservationController {
     }
 
 
+    // Rota para pegar quantas reservas já foram ocupadas no dia para o restaurate passado
     @Get('reserved-tables')
     async getReservedTables(@Query('restaurantId') restaurantId: string, @Query('date') date: string) {
         if (!restaurantId || !date) {
