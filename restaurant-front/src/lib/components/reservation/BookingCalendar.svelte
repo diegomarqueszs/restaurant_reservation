@@ -11,6 +11,9 @@
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { getLocalTimeZone, today } from '@internationalized/date';
 	import type { Restaurant } from '$lib/types/restaurant';
+	import { Toaster } from '../ui/sonner';
+	import { toast } from 'svelte-sonner';
+
 
 	export let restaurantData!: Restaurant;
 
@@ -108,8 +111,10 @@
 
 				toast.error(errorMessage);  // Exibe o toast com a mensagem de erro
 			} else {
-				toast.success('Reserva realizada com sucesso!');
 				await fetchAvailableTables(); // Atualiza as mesas disponíveis após a reserva
+				toast.success('Reserva realizada com sucesso!');
+				window.location.href = `${window.location.origin}/reservas`;
+			
 			}
 		} catch (error) {
 			toast.error('Ocorreu um erro interno ao fazer a reserva!');
@@ -128,6 +133,7 @@
 
 <div class="flex w-[300px] flex-col items-center">
 	<Toaster />
+
 	<Label for="price" class="w-full p-2 pt-0 text-left text-2xl font-semibold text-[#3e7b31]">
 		{formattedPrice} / Mesa
 	</Label>
