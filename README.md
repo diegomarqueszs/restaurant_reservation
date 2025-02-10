@@ -25,6 +25,40 @@ Além disso, é possível filtrar por tipos de estabelecimentos, como:
 
 ---
 
+# 🚀 Como Rodar a Aplicação  
+
+### Back-end  
+1. Acesse o diretório do back-end:  
+   ```sh
+   cd restaurant-backend/
+   ```  
+2. Instale as dependências:  
+   ```sh
+   npm install
+   ```  
+   > ⚠️ Requisito: Node.js versão 20.0.0 ou superior.  
+3. Inicie a aplicação em modo de desenvolvimento:  
+   ```sh
+   npm run start:dev
+   ```  
+
+### Front-end  
+1. Acesse o diretório do front-end:  
+   ```sh
+   cd restaurant-front/
+   ```  
+2. Instale as dependências:  
+   ```sh
+   npm install
+   ```  
+3. Inicie a aplicação:  
+   ```sh
+   npm run dev
+   ```  
+
+
+
+
 
 ## 📌 **Funcionalidades principais**  
 
@@ -33,12 +67,8 @@ Além disso, é possível filtrar por tipos de estabelecimentos, como:
 - **Interface simples e intuitiva para os clientes**  
 
 
-### Exemplo Back-end
+### Exemplo Aplicação
 
 
-https://github.com/user-attachments/assets/680839cc-b3ed-49e5-b501-7c3b1b10abc5
+https://github.com/user-attachments/assets/f4bfd21e-6935-467f-aef9-7a621a94e1c7
 
-
-
-### Exemplo Front-end
-[Exemplo back.webm](https://github.com/user-attachments/assets/a3c6516c-ada9-4b80-94a1-c5d33cc32a2f)
